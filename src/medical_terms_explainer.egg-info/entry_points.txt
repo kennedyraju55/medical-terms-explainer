@@ -1,0 +1,2 @@
+[console_scripts]
+medical-terms = medical_terms.cli:cli

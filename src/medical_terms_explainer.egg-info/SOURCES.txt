@@ -1,0 +1,14 @@
+README.md
+setup.py
+src/medical_terms/__init__.py
+src/medical_terms/cli.py
+src/medical_terms/core.py
+src/medical_terms/web_ui.py
+src/medical_terms_explainer.egg-info/PKG-INFO
+src/medical_terms_explainer.egg-info/SOURCES.txt
+src/medical_terms_explainer.egg-info/dependency_links.txt
+src/medical_terms_explainer.egg-info/entry_points.txt
+src/medical_terms_explainer.egg-info/requires.txt
+src/medical_terms_explainer.egg-info/top_level.txt
+tests/test_cli.py
+tests/test_core.py

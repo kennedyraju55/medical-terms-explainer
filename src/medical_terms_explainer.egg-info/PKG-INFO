@@ -1,0 +1,206 @@
+Metadata-Version: 2.4
+Name: medical-terms-explainer
+Version: 1.0.0
+Summary: AI-powered medical terminology education tool
+Author: 90 Local LLM Projects
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: click
+Requires-Dist: requests
+Requires-Dist: rich
+Requires-Dist: pyyaml
+Requires-Dist: streamlit
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Dynamic: author
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# 📚 Medical Terms Explainer
+
+> ⚠️ **MEDICAL DISCLAIMER**: This tool is for **EDUCATIONAL PURPOSES ONLY**. It does **NOT** provide medical advice, diagnosis, or treatment recommendations. **ALWAYS** consult a qualified healthcare professional for any medical questions or concerns.
+
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE)
+[![Ollama](https://img.shields.io/badge/LLM-Ollama-green.svg)](https://ollama.ai)
+[![Streamlit](https://img.shields.io/badge/UI-Streamlit-red.svg)](https://streamlit.io)
+
+An AI-powered medical terminology education tool that explains complex medical terms in simple language. Features pronunciation guides, visual aid references, related conditions, and a comprehensive medical abbreviation decoder.
+
+---
+
+## 🚨 Important Medical Disclaimer
+
+> **This tool is for EDUCATIONAL PURPOSES ONLY.**
+>
+> - ❌ This is NOT medical advice
+> - ❌ Do NOT use this for self-diagnosis
+> - ✅ ALWAYS consult a healthcare professional
+> - ✅ Use this only as a learning aid
+>
+> The information provided is for educational enrichment only.
+
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---------|-------------|
+| 📖 **Term Explanation** | AI-powered medical term definitions with etymology |
+| 🗣️ **Pronunciation Guide** | Phonetic pronunciation for 20+ common terms |
+| 🖼️ **Visual Aid References** | Anatomical diagram references for context |
+| 🔗 **Related Conditions** | Links to related medical conditions |
+| 🔤 **Abbreviation Decoder** | 45+ medical abbreviations decoded |
+| 📊 **Detail Levels** | Brief, Standard, and Comprehensive explanations |
+| 🌐 **Web UI** | Interactive Streamlit interface |
+| ⚡ **CLI Tool** | Fast command-line lookups |
+
+---
+
+## 🏗️ Architecture
+
+```
+83-medical-terms-explainer/
+├── src/
+│   └── medical_terms/
+│       ├── __init__.py
+│       ├── core.py              # Core logic, databases, LLM integration
+│       ├── cli.py               # Click CLI interface
+│       └── web_ui.py            # Streamlit web interface
+├── tests/
+│   ├── __init__.py
+│   ├── test_core.py
+│   └── test_cli.py
+├── config.yaml
+├── setup.py
+├── requirements.txt
+├── Makefile
+├── .env.example
+└── README.md
+```
+
+---
+
+## 🚀 Installation
+
+### Prerequisites
+
+- Python 3.10+
+- [Ollama](https://ollama.com/) running locally with a model pulled (e.g., `ollama pull gemma4`)
+
+### Setup
+
+```bash
+cd 83-medical-terms-explainer
+make install
+cp .env.example .env
+```
+
+Or manually:
+
+```bash
+pip install -r requirements.txt
+pip install -e ".[dev]"
+```
+
+---
+
+## 💻 CLI Usage
+
+### Explain a Term
+
+```bash
+python -m medical_terms.cli explain --term "hypertension" --detail comprehensive
+```
+
+Detail levels:
+
+| Level | Description |
+|---|---|
+| `brief` | Short definition and layman explanation only |
+| `standard` | All sections with moderate detail (default) |
+| `comprehensive` | All sections with extensive detail and historical context |
+
+### Batch Explain
+
+```bash
+python -m medical_terms.cli batch --terms "hypertension,tachycardia,edema"
+```
+
+### Decode Abbreviation
+
+```bash
+python -m medical_terms.cli abbreviation --abbrev "CBC"
+```
+
+### List All Abbreviations
+
+```bash
+python -m medical_terms.cli abbreviations
+```
+
+### Search Abbreviations
+
+```bash
+python -m medical_terms.cli search --query "blood"
+```
+
+### Pronunciation
+
+```bash
+python -m medical_terms.cli pronounce --term "arrhythmia"
+```
+
+---
+
+## 🌐 Web UI
+
+```bash
+make run-web
+# OR
+streamlit run src/medical_terms/web_ui.py
+```
+
+The web interface provides:
+
+- **Term Explainer** tab — search and explain medical terms with pronunciation, visual aids, and related conditions
+- **Abbreviation Decoder** tab — decode and search 45+ medical abbreviations
+- **Pronunciation Guide** tab — look up phonetic pronunciations
+- Sidebar with search history and bookmarks
+
+---
+
+## 🧪 Testing
+
+```bash
+make test
+# OR
+python -m pytest tests/ -v
+```
+
+---
+
+## How It Works
+
+1. The user provides a medical term (or a comma-separated list).
+2. A prompt is constructed with the requested detail level and sent to the local LLM via Ollama.
+3. The LLM responds with a structured explanation covering definition, etymology, layman explanation, clinical usage, and related terms.
+4. Supplementary data (pronunciation, visual aids, related conditions) is looked up from built-in databases.
+5. Results are displayed in the terminal (CLI) or browser (Streamlit) with rich formatting.
+
+---
+
+## ⚠️ Disclaimer
+
+**This tool is for EDUCATIONAL PURPOSES ONLY. It does NOT provide medical advice, diagnosis, or treatment recommendations. Always consult a qualified healthcare professional.**
+
+The explanations generated by the LLM may contain inaccuracies. **Do not** use this tool as a substitute for professional medical advice, diagnosis, or treatment. If you have a medical concern, please consult a licensed healthcare provider.
+
+---
+
+*Part of the [90 Local LLM Projects](../../README.md) collection.*
